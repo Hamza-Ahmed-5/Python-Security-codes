@@ -1,0 +1,68 @@
+def caesar_cipher(text, shift=3):
+    encrypted_text = ""
+
+    for char in text:
+        if char.isalpha():
+            base = ord('a') if char.islower() else ord('A')
+            encrypted_char = chr((ord(char) - base + shift) % 26 + base)
+        else:
+            encrypted_char = char
+
+        encrypted_text += encrypted_char
+
+    return encrypted_text
+
+
+def caesar_decipher(text, shift=3):
+    decrypted_text = ""
+
+    for char in text:
+        if char.isalpha():
+            base = ord('a') if char.islower() else ord('A')
+            decrypted_char = chr((ord(char) - base - shift) % 26 + base)
+        else:
+            decrypted_char = char
+
+        decrypted_text += decrypted_char
+
+    return decrypted_text
+
+
+def main():
+    try:
+        # Read plaintext from info.txt
+        with open("info.txt", "r") as file:
+            plaintext = file.read()
+
+        # Encrypt the plaintext
+        encrypted_text = caesar_cipher(plaintext)
+
+        # Write encrypted text to encrypted.txt
+        with open("encrypted.txt", "w") as file:
+            file.write(encrypted_text)
+
+        # Read encrypted text
+        with open("encrypted.txt", "r") as file:
+            encrypted_text = file.read()
+
+        # Decrypt the encrypted text
+        decrypted_text = caesar_decipher(encrypted_text)
+
+        # Write decrypted text to decrypted.txt
+        with open("decrypted.txt", "w") as file:
+            file.write(decrypted_text)
+
+        print("Encryption completed successfully.")
+        print("Decryption completed successfully.")
+        print("Files created:")
+        print("- encrypted.txt")
+        print("- decrypted.txt")
+
+    except FileNotFoundError:
+        print("Error: 'info.txt' was not found.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+
+if __name__ == "__main__":
+    main()
