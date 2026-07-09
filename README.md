@@ -16,13 +16,10 @@ def evaluate_password(password):
     numbers = "1234567890"
     upper_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     lower_characters = upper_characters.lower()
-
-  
     special = False
     num = False
     up = False
     low = False
-
     for X in password:
         if X in special_characters:
             special = True
@@ -32,9 +29,7 @@ def evaluate_password(password):
             up = True
         if X in lower_characters:
             low = True
-
     return special and num and up and low
-
 
 password = input("Enter your password: ")
 print(evaluate_password(password))
@@ -58,5 +53,3 @@ if len(password)==12 :
     print("length is correct")
 else:
     print("length is incorrect and doesn't equal 12")
-#user input is the password
-
